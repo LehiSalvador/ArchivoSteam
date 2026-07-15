@@ -10,6 +10,7 @@ dist/
 build/
 .turbo/
 *.tsbuildinfo
+next-env.d.ts
 .cache/
 coverage/
 playwright-report/
