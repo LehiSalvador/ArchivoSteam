@@ -1,0 +1,8 @@
+.env
+.env.*
+*.local
+
+# Private credential stores live outside this repository, but keep guards here.
+04_CREDENCIALES_PRIVADAS/
+credentials/
+secrets/
