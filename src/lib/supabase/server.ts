@@ -1,15 +1,15 @@
-// Cliente de Supabase para el servidor (Server Components / Route Handlers).
-// PREPARADO para la Fase 3. Nunca expone el service role; usa la anon key
-// pública y las cookies de la petición para la sesión.
-
+// Cliente de Supabase para el servidor (Server Components / Actions / Route
+// Handlers). Nunca expone el service role: usa la clave pública + las cookies de
+// la petición, de modo que RLS se evalúa con el rol real del usuario.
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import type { Database } from "./database.types";
 import { publicEnv } from "@/lib/env";
 
 export async function createClient() {
   const cookieStore = await cookies();
 
-  return createServerClient(publicEnv.supabaseUrl, publicEnv.supabaseAnonKey, {
+  return createServerClient<Database>(publicEnv.supabaseUrl, publicEnv.supabaseAnonKey, {
     cookies: {
       getAll() {
         return cookieStore.getAll();
@@ -18,7 +18,8 @@ export async function createClient() {
         try {
           cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options));
         } catch {
-          // Llamado desde un Server Component sin respuesta mutable; se ignora.
+          // Llamado desde un Server Component sin respuesta mutable; el refresco
+          // de sesión lo cubre el middleware.
         }
       },
     },
