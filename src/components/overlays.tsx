@@ -1,10 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useStore } from "@/components/providers/store";
-import { getArchives, getCities, getCollections } from "@/lib/repository";
-import { norm } from "@/lib/format";
 
 interface SResult {
   kind: string;
@@ -13,42 +11,45 @@ interface SResult {
   href: string;
 }
 
-function useSearchResults(q: string): SResult[] {
-  return useMemo(() => {
-    const n = norm(q);
-    if (!n) return [];
-    const res: SResult[] = [];
-    for (const a of getArchives()) {
-      const hay = norm([a.numStr, a.name, a.role, a.title, a.cityName, a.discLabel, a.topics.join(" ")].join(" "));
-      if (hay.includes(n)) res.push({ kind: "Archivo", title: `${a.numStr} · ${a.name}`, sub: a.title, href: `/archivo/${a.slug}` });
-    }
-    for (const c of getCities()) {
-      if (norm(c.name).includes(n)) res.push({ kind: "Ciudad", title: c.name, sub: c.tag, href: `/recorridos/${c.id}` });
-    }
-    for (const c of getCollections()) {
-      if (norm(c.title).includes(n)) res.push({ kind: "Colección", title: c.title, sub: `${c.count} archivos`, href: `/biblioteca?col=${c.id}` });
-    }
-    return res.slice(0, 8);
-  }, [q]);
-}
-
 function SearchOverlay() {
   const { searchOpen, closeSearch } = useStore();
   const [q, setQ] = useState("");
+  const [results, setResults] = useState<SResult[]>([]);
+  const [suggestions, setSuggestions] = useState<{ label: string; href: string }[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-  const results = useSearchResults(q);
 
   useEffect(() => {
-    if (searchOpen) {
-      setQ("");
-      const t = setTimeout(() => inputRef.current?.focus(), 40);
-      return () => clearTimeout(t);
-    }
+    if (!searchOpen) return;
+    setQ("");
+    const t = setTimeout(() => inputRef.current?.focus(), 40);
+    fetch("/api/search")
+      .then((r) => r.json())
+      .then((d) => setSuggestions(d.suggestions ?? []))
+      .catch(() => {});
+    return () => clearTimeout(t);
   }, [searchOpen]);
+
+  useEffect(() => {
+    const term = q.trim();
+    if (!term) {
+      setResults([]);
+      return;
+    }
+    const ctrl = new AbortController();
+    const t = setTimeout(() => {
+      fetch(`/api/search?q=${encodeURIComponent(term)}`, { signal: ctrl.signal })
+        .then((r) => r.json())
+        .then((d) => setResults(d.results ?? []))
+        .catch(() => {});
+    }, 220);
+    return () => {
+      clearTimeout(t);
+      ctrl.abort();
+    };
+  }, [q]);
 
   if (!searchOpen) return null;
   const idle = q.trim() === "";
-  const suggestions = getCollections().slice(0, 5).map((c) => ({ label: c.title, href: `/biblioteca?col=${c.id}` }));
 
   return (
     <div onClick={closeSearch} style={{ position: "fixed", inset: 0, zIndex: 95, background: "rgba(5,5,5,.8)", backdropFilter: "blur(8px)", display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "12vh 5vw 5vw" }}>

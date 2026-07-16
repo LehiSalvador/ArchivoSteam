@@ -17,6 +17,7 @@ export async function middleware(request: NextRequest) {
 
   const needsAuth =
     path.startsWith("/admin") ||
+    path.startsWith("/vista-previa") ||
     (path.startsWith("/cuenta") && !ACCOUNT_PUBLIC.has(path));
 
   if (needsAuth && !user) {

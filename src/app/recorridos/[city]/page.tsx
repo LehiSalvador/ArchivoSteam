@@ -4,23 +4,22 @@ import { notFound } from "next/navigation";
 import { ArchiveCard } from "@/components/archive-card";
 import { getArchives, getCities, getCityById } from "@/lib/repository";
 
-export function generateStaticParams() {
-  return getCities().map((c) => ({ city: c.id }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ city: string }> }): Promise<Metadata> {
   const { city } = await params;
-  const c = getCityById(city);
+  const c = await getCityById(city);
   return { title: c ? `Recorrido · ${c.name}` : "Recorrido" };
 }
 
 export default async function CiudadPage({ params }: { params: Promise<{ city: string }> }) {
   const { city } = await params;
-  const c = getCityById(city);
+  const c = await getCityById(city);
   if (!c) notFound();
 
-  const archives = getArchives().filter((a) => a.city === c.id);
-  const others = getCities().filter((o) => o.id !== c.id);
+  const [allArchives, allCities] = await Promise.all([getArchives(), getCities()]);
+  const archives = allArchives.filter((a) => a.city === c.id);
+  const others = allCities.filter((o) => o.id !== c.id);
   const disciplines = Array.from(new Set(archives.map((a) => a.discLabel).filter(Boolean)));
 
   return (

@@ -7,11 +7,16 @@ const eyebrow = { fontFamily: "var(--mono)", fontSize: "12px", letterSpacing: ".
 const h2 = { fontFamily: "var(--serif)", fontWeight: 600, fontSize: "clamp(26px,3.4vw,38px)", color: "var(--marfil)", margin: "12px 0 0" };
 const wrap = { maxWidth: "1240px", margin: "0 auto" };
 
-export default function HomePage() {
-  const nuevos = getNewArchives(6);
-  const trend = getTrending(4);
-  const cols = getCollections().slice(0, 6);
-  const cities = getCities();
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const [nuevos, trend, colsAll, cities] = await Promise.all([
+    getNewArchives(6),
+    getTrending(4),
+    getCollections(),
+    getCities(),
+  ]);
+  const cols = colsAll.slice(0, 6);
 
   return (
     <>

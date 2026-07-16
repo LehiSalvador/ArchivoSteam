@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArchiveCard } from "@/components/archive-card";
-import { getArchives, getCities, getCollections, getDisciplines } from "@/lib/repository";
+import type { Archive, City, Collection } from "@/types/domain";
 import { norm } from "@/lib/format";
 
 const PER = 9;
@@ -16,7 +16,17 @@ const SORTS: [string, string][] = [
   ["guardados", "Guardados"],
 ];
 
-export function LibraryExplorer() {
+export function LibraryExplorer({
+  archives,
+  cities,
+  disciplines,
+  collections,
+}: {
+  archives: Archive[];
+  cities: City[];
+  disciplines: Record<string, string>;
+  collections: Collection[];
+}) {
   const searchParams = useSearchParams();
   const colParam = searchParams.get("col");
 
@@ -31,10 +41,7 @@ export function LibraryExplorer() {
   const [openFilter, setOpenFilter] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const cities = getCities();
-  const disciplines = getDisciplines();
-  const collections = getCollections();
-  const all = getArchives();
+  const all = archives;
 
   useEffect(() => {
     if (colParam) {

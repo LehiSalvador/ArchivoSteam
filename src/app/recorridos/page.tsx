@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 import { getCities } from "@/lib/repository";
 
 export const metadata: Metadata = { title: "Recorridos" };
+export const dynamic = "force-dynamic";
 
-export default function RecorridosPage() {
-  const cities = getCities();
+export default async function RecorridosPage() {
+  const cities = await getCities();
   return (
     <div data-screen-label="Recorridos" style={{ paddingTop: "92px" }}>
       <section style={{ maxWidth: "1240px", margin: "0 auto", padding: "44px 5vw 30px" }}>
