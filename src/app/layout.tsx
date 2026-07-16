@@ -26,13 +26,28 @@ const mono = IBM_Plex_Mono({
   display: "swap",
 });
 
+const SITE_URL = "https://www.archivostem.com";
+const SITE_DESC =
+  "Una biblioteca documental audiovisual de conversaciones con personas detrás de la ciencia, la tecnología, la ingeniería, el arte, la cultura, la industria y las ideas.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Archivo STEAM — Preservar historias. Compartir conocimiento.",
     template: "%s · Archivo STEAM",
   },
-  description:
-    "Una biblioteca documental audiovisual de conversaciones con personas detrás de la ciencia, la tecnología, la ingeniería, el arte, la cultura, la industria y las ideas.",
+  description: SITE_DESC,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "Archivo STEAM",
+    locale: "es_MX",
+    url: SITE_URL,
+    title: "Archivo STEAM — Preservar historias. Compartir conocimiento.",
+    description: SITE_DESC,
+  },
+  twitter: { card: "summary_large_image", title: "Archivo STEAM", description: SITE_DESC },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
