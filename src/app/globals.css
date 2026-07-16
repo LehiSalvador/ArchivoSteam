@@ -13,7 +13,7 @@
   --gold:#C99A44; --gold-bright:#E3B45E; --gold-ink:#8A6520; --gold-soft:rgba(201,154,68,.14);
   --line-dark:rgba(245,245,242,.14); --line-dark-2:rgba(245,245,242,.08);
   --line-light:rgba(26,24,19,.12); --line-light-2:rgba(26,24,19,.07);
-  --tx-d:#F5F5F2; --tx-d-mut:rgba(245,245,242,.62); --tx-d-dim:rgba(245,245,242,.40);
+  --tx-d:#F5F5F2; --tx-d-mut:rgba(245,245,242,.62); --tx-d-dim:rgba(245,245,242,.56);
   --tx-l:#1A1813; --tx-l-mut:rgba(26,24,19,.62); --tx-l-dim:rgba(26,24,19,.42);
   --info:oklch(.70 .06 240); --warn:oklch(.74 .10 68); --mute:oklch(.62 .01 80); --err:oklch(.62 .13 40);
   --serif:var(--font-serif),'Source Serif 4',Georgia,'Times New Roman',serif;
@@ -75,7 +75,7 @@ input,select,textarea{font-family:inherit}
 }
 
 .light{--ink:#F6F5F1;--ink-2:#FBFAF7;--ink-3:#FFFFFF;--ink-4:#F0EEE8;--marfil:#1A1813;--tx-d:#1A1813;--tx-d-mut:rgba(26,24,19,.64);--tx-d-dim:rgba(26,24,19,.46);--line-dark:rgba(26,24,19,.14);--line-dark-2:rgba(26,24,19,.08);--gold:#8A6520;--gold-bright:#7A5A1C;--gold-soft:rgba(201,154,68,.16);background:var(--ink-2);color:var(--tx-d)}
-.dark{--ink:#0D0D0D;--ink-2:#141310;--ink-3:#1C1912;--ink-4:#26221A;--marfil:#F5F5F2;--tx-d:#F5F5F2;--tx-d-mut:rgba(245,245,242,.62);--tx-d-dim:rgba(245,245,242,.40);--line-dark:rgba(245,245,242,.14);--line-dark-2:rgba(245,245,242,.08);--gold:#C99A44;--gold-bright:#E3B45E;--gold-soft:rgba(201,154,68,.14);color:var(--tx-d)}
+.dark{--ink:#0D0D0D;--ink-2:#141310;--ink-3:#1C1912;--ink-4:#26221A;--marfil:#F5F5F2;--tx-d:#F5F5F2;--tx-d-mut:rgba(245,245,242,.62);--tx-d-dim:rgba(245,245,242,.56);--line-dark:rgba(245,245,242,.14);--line-dark-2:rgba(245,245,242,.08);--gold:#C99A44;--gold-bright:#E3B45E;--gold-soft:rgba(201,154,68,.14);color:var(--tx-d)}
 
 @keyframes auraBtn{0%,100%{box-shadow:0 6px 20px rgba(201,154,68,.20)}50%{box-shadow:0 8px 30px rgba(201,154,68,.42)}}
 @keyframes auraBtnSoft{0%,100%{box-shadow:0 0 0 1px rgba(201,154,68,0),0 4px 14px rgba(201,154,68,.08)}50%{box-shadow:0 0 0 1px rgba(201,154,68,.20),0 6px 20px rgba(201,154,68,.18)}}

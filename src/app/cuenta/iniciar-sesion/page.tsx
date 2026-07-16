@@ -51,7 +51,7 @@ export default async function Page({
         submitLabel="Entrar"
       />
       <div style={{ marginTop: "16px", fontSize: "13.5px" }}>
-        <Link href="/cuenta/recuperar" style={{ color: "var(--tx-d-dim)" }}>
+        <Link href="/cuenta/recuperar" style={{ color: "var(--tx-d-mut)" }}>
           ¿Olvidaste tu contraseña?
         </Link>
       </div>
