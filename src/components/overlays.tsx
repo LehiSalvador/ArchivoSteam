@@ -57,7 +57,7 @@ function SearchOverlay() {
           <span style={{ color: "var(--gold)" }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.5" y2="16.5" /></svg>
           </span>
-          <input ref={inputRef} id="global-search-input" type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar archivos, personas, temas, ciudades…" aria-label="Búsqueda global" style={{ flex: 1, background: "transparent", border: "none", color: "var(--marfil)", fontSize: "17px", outline: "none" }} />
+          <input ref={inputRef} id="global-search-input" type="search" autoComplete="off" data-lpignore="true" data-1p-ignore value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar archivos, personas, temas, ciudades…" aria-label="Búsqueda global" style={{ flex: 1, background: "transparent", border: "none", color: "var(--marfil)", fontSize: "17px", outline: "none" }} />
           <button onClick={closeSearch} aria-label="Cerrar" style={{ background: "none", border: "none", color: "var(--tx-d-dim)", fontSize: "20px" }}>×</button>
         </div>
         <div style={{ maxHeight: "52vh", overflow: "auto" }}>

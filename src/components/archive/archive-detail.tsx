@@ -211,7 +211,7 @@ export function ArchiveDetail({ archive, related }: { archive: Archive; related:
                   <p style={{ fontSize: "16px", lineHeight: 1.8, color: "var(--tx-d-mut)", margin: 0 }}>Resumen editorial de la conversación con {archive.name}: {archive.summary} A lo largo de la charla se abordan sus decisiones, errores y aprendizajes.</p>
                 ) : (
                   <>
-                    <input type="search" value={tQuery} onChange={(e) => setTQuery(e.target.value)} placeholder="Buscar en la transcripción…" aria-label="Buscar en la transcripción" style={{ width: "100%", background: "var(--ink-3)", border: "1px solid var(--line-dark)", borderRadius: "9px", padding: "10px 14px", color: "var(--marfil)", fontSize: "14px", marginBottom: "12px" }} />
+                    <input type="search" autoComplete="off" data-lpignore="true" data-1p-ignore value={tQuery} onChange={(e) => setTQuery(e.target.value)} placeholder="Buscar en la transcripción…" aria-label="Buscar en la transcripción" style={{ width: "100%", background: "var(--ink-3)", border: "1px solid var(--line-dark)", borderRadius: "9px", padding: "10px 14px", color: "var(--marfil)", fontSize: "14px", marginBottom: "12px" }} />
                     <span style={{ fontFamily: "var(--mono)", fontSize: "11px", color: "var(--tx-d-dim)", display: "block", marginBottom: "12px" }}>{turns.length} intervenciones</span>
                     <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                       {turns.map((t, i) => (

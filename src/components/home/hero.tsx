@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useStore } from "@/components/providers/store";
-import { HeroSymbol } from "@/components/brand-mark";
+import { AnimatedBrandSymbol } from "@/components/brand-symbol";
 
 export function Hero() {
   const { openTrailer } = useStore();
@@ -10,7 +10,7 @@ export function Hero() {
     <section data-screen-label="Inicio · Hero" className="dark" style={{ position: "relative", minHeight: "100svh", background: "var(--ink)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "120px 6vw 90px", overflow: "hidden" }}>
       <div className="cover-glow" style={{ position: "absolute", left: "50%", bottom: "2%", width: "min(820px,92vw)", height: "480px", background: "radial-gradient(60% 70% at 50% 60%,rgba(201,154,68,.20),rgba(201,154,68,.04) 55%,transparent 72%)", pointerEvents: "none" }} />
       <div className="rise" style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", maxWidth: "820px" }}>
-        <HeroSymbol />
+        <AnimatedBrandSymbol variant="hero" />
         <h1 style={{ margin: 0, display: "flex", alignItems: "baseline", gap: "14px", flexWrap: "wrap", justifyContent: "center" }}>
           <span style={{ fontFamily: "var(--sans)", fontWeight: 800, fontSize: "clamp(38px,7vw,74px)", letterSpacing: ".06em", color: "var(--marfil)", lineHeight: 1 }}>ARCHIVO</span>
           <span style={{ fontFamily: "var(--sans)", fontWeight: 600, fontSize: "clamp(20px,3.4vw,34px)", letterSpacing: ".28em", color: "var(--gold)", lineHeight: 1 }}>STEAM</span>

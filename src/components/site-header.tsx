@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useStore } from "@/components/providers/store";
-import { HeaderMark, Wordmark } from "@/components/brand-mark";
+import { Wordmark } from "@/components/brand-mark";
+import { AnimatedBrandSymbol } from "@/components/brand-symbol";
 
 const NAV = [
   { key: "home", href: "/", label: "Inicio" },
@@ -46,7 +47,7 @@ export function SiteHeader() {
   return (
     <header id="site-header" data-solid={isHome ? "0" : "1"} ref={ref}>
       <Link className="sh-brand" href="/" aria-label="Archivo STEAM — inicio" style={{ display: "flex", alignItems: "center", gap: "11px", flex: "none" }}>
-        <HeaderMark />
+        <AnimatedBrandSymbol variant="header" />
         <Wordmark />
       </Link>
       <nav className="sh-nav" aria-label="Navegación principal">

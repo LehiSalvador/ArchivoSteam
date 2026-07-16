@@ -123,7 +123,7 @@ export function LibraryExplorer() {
           <span style={{ position: "absolute", left: "18px", top: "50%", transform: "translateY(-50%)", color: "var(--tx-d-dim)" }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.5" y2="16.5" /></svg>
           </span>
-          <input type="search" value={q} onChange={(e) => { setQ(e.target.value); setPage(1); }} placeholder="Buscar: nombre, tema, ciudad, «Archivo 024»…" aria-label="Buscar en el archivo" style={{ width: "100%", background: "var(--ink-3)", border: "1px solid var(--line-dark)", borderRadius: "12px", padding: "16px 18px 16px 50px", color: "var(--marfil)", fontSize: "16px" }} />
+          <input type="search" autoComplete="off" data-lpignore="true" data-1p-ignore value={q} onChange={(e) => { setQ(e.target.value); setPage(1); }} placeholder="Buscar: nombre, tema, ciudad, «Archivo 024»…" aria-label="Buscar en el archivo" style={{ width: "100%", background: "var(--ink-3)", border: "1px solid var(--line-dark)", borderRadius: "12px", padding: "16px 18px 16px 50px", color: "var(--marfil)", fontSize: "16px" }} />
         </div>
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap", marginBottom: "14px" }}>
